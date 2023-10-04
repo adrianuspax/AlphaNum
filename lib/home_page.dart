@@ -14,11 +14,18 @@ class _HomePageState extends State<HomePage> {
     return Expanded(
       child: MaterialButton(
         onPressed: () {
+          if(input.length == 9) { return; }
           setState(() {
             input += value.toString();
           });
         },
-        child: Text(layout),
+        child: Text(
+          layout,
+          style: TextStyle(
+            color: Colors.white70,
+          ),
+        ),
+        shape: CircleBorder(),
       ),
     );
   }
@@ -79,7 +86,19 @@ class _HomePageState extends State<HomePage> {
                         child: SizedBox(),
                       ),
                       Expanded(
-                        child: Icon(Icons.backspace),
+                        child: MaterialButton(
+                          onPressed: () {
+                            setState(() {
+                              input = input.isNotEmpty ? input.substring(
+                                0, input.length - 1,
+                              ) : '';
+                            });
+                          },
+                          child: Icon(
+                            Icons.backspace,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ],
                   ),
